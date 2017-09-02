@@ -5,15 +5,19 @@ debian/tmp/usr/lib/*/omc/libomcgc*
 debian/tmp/usr/lib/*/omc/libfmilib*
 
 # MSL-external
-debian/tmp/usr/lib/*/omc/libModelicaExternalC*
-debian/tmp/usr/lib/*/omc/libModelicaStandardTables*
+debian/tmp/usr/lib/*/omc/libModelica*
+debian/tmp/usr/lib/*/omc/libzlib*
 
 # Simulations
 debian/tmp/usr/lib/*/omc/libOpenModelicaFMIRuntimeC*
 debian/tmp/usr/lib/*/omc/libSimulationRuntimeC.*
+debian/tmp/usr/lib/*/omc/libbtf*
+debian/tmp/usr/lib/*/omc/libklu*
 debian/tmp/usr/lib/*/omc/liblis*
 debian/tmp/usr/lib/*/omc/libipopt*
 debian/tmp/usr/lib/*/omc/libcoin*
 debian/tmp/usr/lib/*/omc/libcminpack*
 debian/tmp/usr/lib/*/omc/libumfpack*
-debian/tmp/usr/lib/*/omc/libamd*
+debian/tmp/usr/lib/*/omc/lib*amd*
+debian/tmp/usr/lib/*/omc/libomopc*
+debian/tmp/usr/lib/*/omc/libsundials_*

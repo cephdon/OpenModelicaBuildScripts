@@ -5,32 +5,37 @@ Maintainer: OpenModelica Build System <build@openmodelica.org>
 Build-Depends: debhelper (>= 9.0.0),
 # sbuild i386 does not handle native, cross-compile armhf requires it...
  clang:native | clang,
- gfortran-arm-linux-gnueabihf:native | gfortran:native | gfortran,
+ gfortran:native | gfortran,
  default-jdk:native | default-jdk,
  omniidl:native (>= 4.0.0) | omniidl4:native | omniidl (>= 4.0.0) | omniidl4,
  libhwloc-dev:native | libhwloc-dev,
  automake,
  libtool,
+ uuid-dev,
  libncurses5-dev,
  libsqlite3-dev,
  cmake (>= 2.8.6),
- libssl-dev (>= 0.9.8g),
+# libssl-dev (>= 0.9.8g), # Do we really depend on libssl directly? Debian stretch conflicts with it...
  libreadline-dev,
- libqt4-dev (>= 4.4.3),
- libqtwebkit-dev,
+ qtbase5-dev,
+ libqt5svg5-dev,
+ qttools5-dev-tools,
+ libqt5opengl5-dev,
+ libqt5webkit5-dev,
+ libqt5xmlpatterns5-dev,
  liblpsolve55-dev (>= 5.5.0.10),
  libomniorb4-dev,
  libhdf5-serial-dev | libhdf5-dev,
  liblapack-dev,
  autoconf,
  libexpat1-dev,
- libsundials-serial-dev,
- libsundials-kinsol1,
- libgtkglext1-dev,
- libboost-all-dev [!armhf],
- libopenscenegraph-dev [!armhf],
- libdbus-1-dev,
- pkg-config
+ libiomp-dev,
+# Should be needed but seems to mess up sbuild
+# libexpat1-dev:native,
+ libboost-all-dev,
+ libopenscenegraph-dev,
+ pkg-config,
+ lsb-release
 Standards-Version: 3.9.5
 
 Package: openmodelica
@@ -38,7 +43,7 @@ Section: math
 Architecture: any
 Depends: omc (<< 20000),
  omplot (<< 20000),
- omlib-modelica-3.2.1,
+ omlib-modelica-3.2.2 | omlib-modelica-3.2.1,
  omshell (<< 20000),
  omshell-terminal (<< 20000),
  omnotebook (<< 20000),
@@ -58,7 +63,7 @@ Description: A complete Modelica environment
  1. Package omc the OpenModelica Compiler/Interpreter (omc)
  2. Package omshell the OpenModelica Shell (OMShell)
  3. Package omshell-terminal the OpenModelica Shell-terminal (OMShell-terminal)
- 4. Package omlib-msl32 the Modelica Standard Library version 3.2.1
+ 4. Package omlib-modelica-3.2.x the Modelica Standard Library version 3.2.x
  5. Package omnotebook the OpenModelica Notebook, with DrModelica and DrControl
  6. Package omedit, a Modelica connection editor for OpenModelica
  7. Package omoptim, a tool for optimization of Modelica models (temporarily removed while the build system is being updated)
@@ -69,14 +74,10 @@ Section: math
 Architecture: any
 Depends: clang,
  build-essential,
- gnuplot,
- xsltproc,
  libexpat1-dev,
- libsundials-serial-dev,
  liblapack-dev,
  zip,
  unzip,
- libdbus-1-dev,
  omc-common,
  libomc,
  libomcsimulation,
@@ -84,6 +85,8 @@ Depends: clang,
  ${misc:Depends}
 Recommends: python-beautifulsoup,
  omplot,
+ gnuplot-nox,
+ xsltproc,
  libsaxonb-java
 Description: The OpenModelica Compiler
  This is the core of the OpenModelica project. It can be used stand-alone as
@@ -174,7 +177,7 @@ Package: omedit
 Section: math
 Architecture: any
 Depends: omc (<< 20000),
- omlib-modelica-3.2.1,
+ omlib-modelica-3.2.2 | omlib-modelica-3.2.1,
  omlib-modelicareference,
  ${shlibs:Depends},
  ${misc:Depends}
@@ -188,7 +191,9 @@ Depends: omc (<< 20000),
  ${shlibs:Depends},
  ${misc:Depends}
 Recommends: drmodelica,
- drcontrol
+ drcontrol,
+ texlive-latex-base,
+ dvipng
 Description: A Mathematica-style Notebook for OpenModelica
 
 Package: drmodelica
